@@ -1,0 +1,58 @@
+<div class="nav justify-content-end mt-3">
+<a class="btn btn-primary me-3" href="../prohlizec.php" role="button">Úvod</a>
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    {{session_login}}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="../zmenaHesla.php">Změnit heslo</a></li>
+    <li><a class="dropdown-item" href="../logout.php">Odhlášení</a></li>
+  </ul>
+    </div>
+</div>
+
+<h1>Nový klíč</h1>
+
+{{#succes}}
+<div class="alert alert-success mt-3" role="alert">
+    {{succes}}
+</div>
+{{/succes}}
+
+{{^succes}}
+{{#error}}
+<div class="mb-3 alert alert-danger" role="alert">
+    {{error}}
+</div>
+{{/error}}
+
+<form method="post" action='./insert.php'>
+    <div class="mt-3">
+    <label for="employee_id">Zaměstnanec</label>
+    <select  name="employee_id" id="employee_id" class="form-select" required>
+    <option selected disabled>Vyberte zaměstnance</option>
+    {{#stmtemployees}}
+    <option value="{{employee_id}}">{{surname}} {{name}}</option>
+    {{/stmtemployees}}
+    </select>
+    </div>
+
+    <div class="mt-3">
+    <label for="room_id">Místnost</label>
+    <select  name="room_id" id="room_id" class="form-select" required>
+    <option selected disabled>Vyberte místnost</option>
+    {{#stmtrooms}}
+    <option value="{{room_id}}">{{name}}</option>
+    {{/stmtrooms}}
+    </select>
+    </div>
+
+    <div class="mt-3">
+        <input type="hidden" name="sended" value="true">
+        <input type="submit" value="Vytvořit" class="btn btn-primary" />
+    </div>
+
+</form>
+{{/succes}}
+
+<a href="./index.php">Seznam klíčů</a>

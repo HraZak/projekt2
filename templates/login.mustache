@@ -1,0 +1,21 @@
+<form method="post" action="./index.php">
+<fieldset>
+    <legend>Přihlášení</legend>
+    {{#error}}
+        <div class="mb-3 alert alert-danger" role="alert">
+            {{error}}
+        </div>
+    {{/error}}
+  <div class="mb-3">
+    <label for="login" class="form-label">Jméno</label>
+    <input class="form-control" type="text" id="login" name="login" required value="{{login}}">
+  </div>
+  
+  <div class="mb-3">
+    <label for="password" class="form-label">Heslo</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Přihlásit">
+</fieldset>
+</form>

@@ -1,0 +1,26 @@
+<div class="nav justify-content-end mt-3">
+<a class="btn btn-primary me-3" href="../prohlizec.php" role="button">Úvod</a>
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    {{login}}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="../zmenaHesla.php">Změnit heslo</a></li>
+    <li><a class="dropdown-item" href="../logout.php">Odhlášení</a></li>
+  </ul>
+    </div>
+</div>
+
+{{#error}}
+<div class="alert alert-danger mt-3" role="alert">
+    {{error}}
+</div>
+{{/error}}
+
+{{#succes}}
+<div class="alert alert-success mt-3" role="alert">
+    {{succes}}
+</div>
+{{/succes}}
+
+<a href="./index.php">Seznam zaměstnanců</a>

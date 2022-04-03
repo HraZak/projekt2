@@ -1,0 +1,89 @@
+<div class="nav justify-content-end mt-3">
+<a class="btn btn-primary me-3" href="../prohlizec.php" role="button">Úvod</a>
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    {{session_login}}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="../zmenaHesla.php">Změnit heslo</a></li>
+    <li><a class="dropdown-item" href="../logout.php">Odhlášení</a></li>
+  </ul>
+    </div>
+</div>
+
+<h1>Aktualizace zaměstnance</h1>
+
+{{#succes}}
+<div class="alert alert-success mt-3" role="alert">
+    {{succes}}
+</div>
+{{/succes}}
+
+{{^succes}}
+{{#error}}
+<div class="mb-3 alert alert-danger" role="alert">
+    {{error}}
+</div>
+{{/error}}
+
+<form method="post" action='./update.php'>
+    <div class="mt-3">
+        <label for="name">Jméno</label>
+        <input type="text" name="name" id="name" value="{{name}}" class="form-control" required/>
+    </div>
+
+    <div class="mt-3">
+    <label for="surname">Příjmení</label>
+        <input type="text" name="surname" id="surname" value="{{surname}}" class="form-control" required/>
+    </div>
+
+    <div class="mt-3">
+    <label for="job">Práce</label>
+        <input type="text" name="job" id="job" value="{{job}}" class="form-control" required/>
+    </div>
+    
+    <div class="mt-3">
+    <label for="wage">Mzda</label>
+        <input type="number" name="wage" id="wage" value="{{wage}}" class="form-control" min="0" required/>
+    </div>
+
+    <div class="mt-3">
+    <label for="room">Místnost</label>
+    <select  name="room" id="room" class="form-select">
+    <option selected disabled>Vyberte místnost</option>
+    {{#stmtrooms}}
+    <option value="{{room_id}}">{{name}}</option>
+    {{/stmtrooms}}
+    </select>
+    </div>
+
+    <div class="mt-3">
+    <label for="login">Login</label>
+        <input type="text" name="login" id="login" value="{{login}}" class="form-control" required/>
+    </div>
+
+    <div class="mt-3">
+    <label for="password">Heslo</label>
+        <input type="password" name="password" id="password" value="{{password}}" class="form-control"/>
+    </div>
+
+    <div class="mt-3">
+    {{#admin}}
+        <input type="checkbox" name="admin" id="admin" class="form-check-input" checked/>
+        {{/admin}}
+        {{^admin}}
+        <input type="checkbox" name="admin" id="admin" class="form-check-input"/>
+        {{/admin}}
+    <label class="form-check-label" for="admin">Admin</label>
+    </div>
+
+    <div class="mt-3">
+        <input type="hidden" name="sended" value="true">
+        <input type="hidden" name="employee_id" value="{{employee_id}}">
+        <input type="submit" value="Aktualizovat" class="btn btn-primary" />
+    </div>
+
+</form>
+{{/succes}}
+
+<a href="./index.php">Seznam zaměstnanců</a>

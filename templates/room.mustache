@@ -1,0 +1,45 @@
+<div class="nav justify-content-end mt-3">
+<a class="btn btn-primary me-3" href="../prohlizec.php" role="button">Úvod</a>
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    {{login}}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="../zmenaHesla.php">Změnit heslo</a></li>
+    <li><a class="dropdown-item" href="../logout.php">Odhlášení</a></li>
+  </ul>
+    </div>
+</div>
+
+{{#error}}
+<div class="mb-3 alert alert-danger" role="alert">
+    {{error}}
+</div>
+{{/error}}
+{{^error}}
+{{#room}}
+<h1>Místnost č. {{no}}</h1>
+
+        <dl>
+        <dt>Číslo</dt><dd>{{no}}</dd>
+        <dt>Název</dt><dd>{{name}}</dd>
+        <dt>Telefon</dt><dd>{{phone}}</dd>
+{{/room}}
+
+            <dt>Lidé</dt>
+{{#stmtemployee}}
+            <dd><a href="../lide/clovek.php?employee_id={{employee_id}}">{{surname}} {{name}}</a></dd>
+{{/stmtemployee}}
+
+        {{#wage}}
+            <dt>Průměrná mzda</dt><dd>{{wage}}</dd>
+        {{/wage}}
+
+<dt>Klíče</dt>
+{{#stmtkeys}}
+    <dd><a href="../lide/clovek.php?employee_id={{employee_id}}">{{surname}} {{name}}</a></dd>
+{{/stmtkeys}}
+</dl>
+{{/error}}
+
+<a href="./index.php"><i class="bi bi-box-arrow-in-left"></i> Zpět na seznam místností</a>

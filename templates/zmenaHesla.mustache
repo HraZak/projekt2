@@ -1,0 +1,42 @@
+<div class="nav justify-content-end mt-3">
+<a class="btn btn-primary me-3" href="./prohlizec.php" role="button">Úvod</a>
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    {{login}}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="./zmenaHesla.php">Změnit heslo</a></li>
+    <li><a class="dropdown-item" href="./logout.php">Odhlášení</a></li>
+  </ul>
+    </div>
+</div>
+
+<form method="post" action="./zmenaHesla.php">
+<fieldset>
+    <legend>Změna hesla</legend>
+    {{#error}}
+        <div class="mb-3 alert alert-danger" role="alert">
+            {{error}}
+        </div>
+    {{/error}}
+    {{#success}}
+        <div class="mb-3 alert alert-success" role="alert">
+            {{success}}
+        </div>
+    {{/success}}
+  <div class="mb-3">
+    <label for="oldPassword" class="form-label">Staré heslo</label>
+    <input class="form-control" type="password" id="oldPassword" name="oldPassword" required>
+  </div>
+  <div class="mb-3">
+    <label for="newPassword" class="form-label">Nové heslo</label>
+    <input class="form-control" type="password" id="newPassword" name="newPassword" required>
+  </div>
+  <div class="mb-3">
+    <label for="newPasswordVerify" class="form-label">Nové heslo - ověření</label>
+    <input class="form-control" type="password" id="newPasswordVerify" name="newPasswordVerify" required>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Změnit heslo">
+</fieldset>
+</form>

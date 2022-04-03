@@ -1,0 +1,52 @@
+<div class="nav justify-content-end mt-3">
+<a class="btn btn-primary me-3" href="../prohlizec.php" role="button">Úvod</a>
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    {{login}}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="../zmenaHesla.php">Změnit heslo</a></li>
+    <li><a class="dropdown-item" href="../logout.php">Odhlášení</a></li>
+  </ul>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Jméno</th>
+        <th>Místnost</th>
+        <th>Telefon</th>
+        <th>Pozice</th>
+        {{#admin}}
+        <th>Actions</th>
+        {{/admin}}
+    </tr>
+    </thead>
+
+    <tbody>
+    {{# lide }}
+        <tr>
+            <td><a href="./clovek.php?employee_id={{ employee_id }}">{{surname}} {{ name }}</a></td>
+            <td>{{ room_name }}</td>
+            <td>{{ phone }}</td>
+            <td>{{ job }}</td>
+            {{#admin}}
+            <td>
+                <form method="post" action="./update.php">
+                    <input type="hidden" name="employee_id" value="{{employee_id}}" />
+                    <input type="submit" value="Update" class="btn btn-info"/>
+                </form>
+                <form method="post" action="./delete.php" onsubmit="return confirm('Really delete employee?\nAction cannot be undone!')">
+                    <input type="hidden" name="employee_id" value="{{employee_id}}" />
+                    <input type="submit" value="Delete" class="btn btn-danger"/>
+                </form>
+            </td>
+            {{/admin}}
+        </tr>
+    {{/ lide }}
+    </tbody>
+</table>
+{{#admin}}
+<a href="./insert.php" class="btn btn-primary">New Employee</a>
+{{/admin}}
