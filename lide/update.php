@@ -70,7 +70,6 @@ final class CurrentPage extends BaseDBPage
                 $stmt->bindParam(':job', $job);
                 $stmt->bindParam(':wage', $wage);
                 $stmt->bindParam(':login', $login);
-                if (!$admin) $admin = false;
                 $stmt->bindParam(':admin', $admin);
                 $stmt->bindParam(':employee_id', $employee_id);
                 if ($stmt->execute()) {
