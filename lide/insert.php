@@ -58,7 +58,7 @@ final class CurrentPage extends BaseDBPage
                 $stmt->bindParam(':login', $login);
                 $password = password_hash($password, PASSWORD_DEFAULT);
                 $stmt->bindParam(':password', $password);
-                if (!$admin) $admin = false;
+                $admin = $admin ? 1 : 0;
                 $stmt->bindParam(':admin', $admin);
                 if ($stmt->execute()) {
                     $succes = 'Zaměstnanec přidán';
