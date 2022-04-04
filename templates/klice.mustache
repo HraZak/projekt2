@@ -25,8 +25,8 @@
     <tbody>
     {{# klice }}
         <tr>
-            <td>{{surname}} {{ name }}</td>
-            <td>{{ room_name }}</td>
+            <td><a href="./clovek.php?employee_id={{ employee_id }}">{{surname}} {{ name }}</a></td>
+            <td><a href="./room.php?room_id={{ room_id }}">{{ room_name }}</a></td>
             {{#admin}}
             <td>
                 <form method="post" action="./delete.php" onsubmit="return confirm('Really delete key?\nAction cannot be undone!')">
