@@ -31,11 +31,11 @@
             <td>{{ phone }}</td>
             {{#admin}}
             <td>
-                <form method="post" action="./update">
+                <form method="post" action="./update.php">
                     <input type="hidden" name="room_id" value="{{room_id}}" />
                     <input type="submit" value="Update" class="btn btn-info"/>
                 </form>
-                <form method="post" action="./delete" onsubmit="return confirm('Really delete room?\nAction cannot be undone!')">
+                <form method="post" action="./delete.php" onsubmit="return confirm('Really delete room?\nAction cannot be undone!')">
                     <input type="hidden" name="room_id" value="{{room_id}}" />
                     <input type="submit" value="Delete" class="btn btn-danger"/>
                 </form>
