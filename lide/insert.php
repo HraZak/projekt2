@@ -20,15 +20,15 @@ final class CurrentPage extends BaseDBPage
     {
         $error = '';
         $succes = '';
-        $sended = filter_input(INPUT_POST, 'sended', FILTER_VALIDATE_BOOLEAN);
-        $name = filter_input(INPUT_POST, 'name');
-        $surname = filter_input(INPUT_POST, 'surname');
-        $job = filter_input(INPUT_POST, 'job');
+        $sended = filter_input(INPUT_POST, 'sended', FILTER_VALIDATE_BOOLEAN) ?? false;
+        $name = filter_input(INPUT_POST, 'name') ?? '';
+        $surname = filter_input(INPUT_POST, 'surname') ?? '';
+        $job = filter_input(INPUT_POST, 'job') ?? '';
         $wage = filter_input(INPUT_POST, 'wage', FILTER_VALIDATE_INT);
         $room = filter_input(INPUT_POST, 'room', FILTER_VALIDATE_INT);
-        $login = filter_input(INPUT_POST, 'login');
-        $password = filter_input(INPUT_POST, 'password');
-        $admin = filter_input(INPUT_POST, 'admin', FILTER_VALIDATE_BOOLEAN);
+        $login = filter_input(INPUT_POST, 'login') ?? '';
+        $password = filter_input(INPUT_POST, 'password') ?? '';
+        $admin = filter_input(INPUT_POST, 'admin', FILTER_VALIDATE_BOOLEAN) ?? false;
 
         $stmtrooms = $this->pdo->prepare('SELECT room_id, name FROM room');
         $stmtrooms->execute();

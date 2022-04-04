@@ -28,17 +28,30 @@ final class CurrentPage extends BaseDBPage
 
         $employee_id = filter_input(INPUT_POST, 'employee_id', FILTER_VALIDATE_INT);
 
-        $sended = filter_input(INPUT_POST, 'sended', FILTER_VALIDATE_BOOLEAN);
+        $stmtemployees = $this->pdo->prepare('SELECT name, surname, job, wage, room, login, admin FROM employee WHERE employee_id=:employee_id');
+        $stmtemployees->bindParam(':employee_id', $employee_id);
+        $stmtemployees->execute();
+        $stmtemployeesData = $stmtemployees->fetch();
+
+        $name = $stmtemployeesData->name;
+        $surname = $stmtemployeesData->surname;
+        $job = $stmtemployeesData->job;
+        $wage = $stmtemployeesData->wage;
+        $room = $stmtemployeesData->room;
+        $login = $stmtemployeesData->login;
+        $admin = $stmtemployeesData->admin;
+
+        $sended = filter_input(INPUT_POST, 'sended', FILTER_VALIDATE_BOOLEAN) ?? false;
 
         if ($sended) {
-            $name = filter_input(INPUT_POST, 'name');
-            $surname = filter_input(INPUT_POST, 'surname');
-            $job = filter_input(INPUT_POST, 'job');
+            $name = filter_input(INPUT_POST, 'name') ?? '';
+            $surname = filter_input(INPUT_POST, 'surname') ?? '';
+            $job = filter_input(INPUT_POST, 'job') ?? '';
             $wage = filter_input(INPUT_POST, 'wage', FILTER_VALIDATE_INT);
             $room = filter_input(INPUT_POST, 'room', FILTER_VALIDATE_INT);
-            $login = filter_input(INPUT_POST, 'login');
-            $password = filter_input(INPUT_POST, 'password');
-            $admin = filter_input(INPUT_POST, 'admin', FILTER_VALIDATE_BOOLEAN);
+            $login = filter_input(INPUT_POST, 'login')  ?? '';
+            $password = filter_input(INPUT_POST, 'password')  ?? '';
+            $admin = filter_input(INPUT_POST, 'admin', FILTER_VALIDATE_BOOLEAN)  ?? false;
 
             if (!$name) {
                 $error = 'Špatně zadané jméno';
@@ -80,22 +93,7 @@ final class CurrentPage extends BaseDBPage
                 $stmt->bindParam(':employee_id', $employee_id);
                 $stmt->execute();
             }
-        } else {
-            $stmtemployees = $this->pdo->prepare('SELECT name, surname, job, wage, room, login, admin FROM employee WHERE employee_id=:employee_id');
-            $stmtemployees->bindParam(':employee_id', $employee_id);
-            $stmtemployees->execute();
-            $stmtemployeesData = $stmtemployees->fetch();
-
-            $name = $stmtemployeesData->name;
-            $surname = $stmtemployeesData->surname;
-            $job = $stmtemployeesData->job;
-            $wage = $stmtemployeesData->wage;
-            $room = $stmtemployeesData->room;
-            $login = $stmtemployeesData->login;
-            $admin = $stmtemployeesData->admin;
         }
-
-        dump($_POST);
 
         return $this->m->render("update_employee", ['session_login' => $_SESSION['login'], 'error' => $error, 'succes' => $succes, 'name' => $name, 'surname' => $surname, 'job' => $job, 'wage' => $wage, 'room' => $room, 'stmtrooms' => $stmtrooms, 'login' => $login, 'password' => $password, 'admin' => $admin, 'employee_id' => $employee_id]);
     }
