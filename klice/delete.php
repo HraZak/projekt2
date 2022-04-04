@@ -35,7 +35,6 @@ final class CurrentPage extends BaseDBPage
             $error = 'Špatný požadavek';
             http_response_code(400);
         }
-        dump($_POST);
 
         return $this->m->render("delete_key", ['login' => $_SESSION['login'], 'error' => $error, 'succes' => $succes]);
     }
